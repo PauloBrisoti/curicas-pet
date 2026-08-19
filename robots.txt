@@ -1,0 +1,68 @@
+# ============================================================
+# ROBOTS.TXT — Curicas Pet
+# ============================================================
+# Atualizado para resolver Crawl Bloat de URLs fantasmas.
+# Bloqueia parâmetros de tracking, pastas internas e
+# duplicatas de sessão/paginação que inflacionavam o orçamento
+# de rastreio para 78+ URLs sem valor de indexação.
+# ============================================================
+
+User-agent: *
+
+# ── Permitir tudo que é público ───────────────────────────
+Allow: /
+Allow: /orcamento
+Allow: /adocao
+Allow: /blog
+Allow: /galeria
+Allow: /privacidade
+Allow: /assets/
+Allow: /camiseta
+
+# ── Bloquear parâmetros de tracking de marketing ─────────
+# UTM (Google Ads, Email, Social)
+Disallow: /*?*utm_source=
+Disallow: /*?*utm_medium=
+Disallow: /*?*utm_campaign=
+Disallow: /*?*utm_content=
+Disallow: /*?*utm_term=
+# Meta/Facebook Pixel
+Disallow: /*?*fbclid=
+# Outros trackers
+Disallow: /*?*gclid=
+Disallow: /*?*ttclid=
+Disallow: /*?*msclkid=
+Disallow: /*?*ref=
+Disallow: /*?*source=
+
+# ── Bloquear pastas internas de sistema ──────────────────
+Disallow: /config/
+Disallow: /models/
+Disallow: /controllers/
+Disallow: /views/admin/
+Disallow: /views/layouts/
+Disallow: /views/admin
+
+# ── Bloquear arquivos de sistema ─────────────────────────
+Disallow: /*.sql$
+Disallow: /*.md$
+Disallow: /*.log$
+Disallow: /*.env$
+Disallow: /sitemap.php
+
+# ── Bloquear URLs internas de admin ──────────────────────
+Disallow: /?page=admin
+Disallow: /?page=admin*
+Disallow: /*action=login
+Disallow: /*action=logout
+Disallow: /*action=dashboard
+Disallow: /*action=servicos
+Disallow: /*action=cotacoes
+Disallow: /*action=pets
+
+# ── Bloquear URLs de sessão e ações internas ─────────────
+Disallow: /*?csrf_token=
+Disallow: /*?sessid=
+
+# ── Sitemap ──────────────────────────────────────────────
+Sitemap: https://curicaspet.com.br/sitemap.xml

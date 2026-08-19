@@ -1,0 +1,241 @@
+================================================================================
+                    GUIA DE DEPLOY - HOSTINGER
+                    Checklist Passo a Passo
+================================================================================
+
+Este guia assume que você já tem uma conta na Hostinger com um plano de 
+hospedagem ativo e um domínio configurado.
+
+================================================================================
+PASSO 1: PREPARAR OS ARQUIVOS LOCALMENTE
+================================================================================
+
+[ ] 1.1. Edite o arquivo /config/database.php com as credenciais do banco 
+    da Hostinger (você obterá no Passo 3)
+
+[ ] 1.2. Edite o arquivo /config/business.php com os dados reais da empresa:
+    - Nome da empresa
+    - WhatsApp (apenas números: 5511999999999)
+    - Instagram URL
+    - Endereço completo
+    - Latitude e Longitude (use Google Maps)
+    - URL do site
+
+[ ] 1.3. No arquivo .htaccess, DESCOMENTE as linhas de HTTPS:
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    
+    REMOVA os # do início dessas duas linhas.
+
+
+================================================================================
+PASSO 2: ACESSAR O HPANEL DA HOSTINGER
+================================================================================
+
+[ ] 2.1. Acesse: https://hpanel.hostinger.com.br
+
+[ ] 2.2. Faça login com sua conta
+
+[ ] 2.3. Selecione o domínio/site onde vai instalar
+
+
+================================================================================
+PASSO 3: CRIAR O BANCO DE DADOS MYSQL
+================================================================================
+
+[ ] 3.1. No menu lateral, vá em: Bancos de Dados > Gerenciamento
+
+[ ] 3.2. Clique em "Criar novo banco de dados"
+
+[ ] 3.3. Preencha:
+    - Nome do banco: petservices (ou outro nome)
+    - Nome do usuário: petservices_user (ou outro)
+    - Senha: (crie uma senha forte e ANOTE!)
+
+[ ] 3.4. Clique em "Criar"
+
+[ ] 3.5. ANOTE as informações:
+    - Host: geralmente é localhost ou algo como mysql.hostinger.com
+    - Nome do banco: o nome completo (ex: u123456789_petservices)
+    - Usuário: o nome completo do usuário
+    - Senha: a senha que você criou
+
+
+================================================================================
+PASSO 4: IMPORTAR O BANCO DE DADOS
+================================================================================
+
+[ ] 4.1. No menu lateral, vá em: Bancos de Dados > phpMyAdmin
+
+[ ] 4.2. Clique em "Acessar phpMyAdmin" no banco criado
+
+[ ] 4.3. No phpMyAdmin, selecione seu banco de dados na coluna esquerda
+
+[ ] 4.4. Clique na aba "Importar" (no topo)
+
+[ ] 4.5. Clique em "Escolher arquivo" e selecione: database.sql
+
+[ ] 4.6. Clique em "Executar" (no final da página)
+
+[ ] 4.7. Aguarde a mensagem de sucesso
+
+[ ] 4.8. REPITA o processo para o arquivo: database_update.sql
+    (Este adiciona a coluna de imagem)
+
+
+================================================================================
+PASSO 5: CONFIGURAR O ARQUIVO database.php
+================================================================================
+
+[ ] 5.1. Abra o arquivo /config/database.php no seu computador
+
+[ ] 5.2. Altere as constantes com os dados do Passo 3:
+
+    define('DB_HOST', 'localhost');  // ou o host fornecido
+    define('DB_NAME', 'u123456789_petservices');  // nome completo
+    define('DB_USER', 'u123456789_user');  // usuário completo
+    define('DB_PASS', 'sua_senha_aqui');  // senha criada
+
+[ ] 5.3. Salve o arquivo
+
+
+================================================================================
+PASSO 6: FAZER UPLOAD DOS ARQUIVOS
+================================================================================
+
+[ ] 6.1. No hPanel, vá em: Arquivos > Gerenciador de Arquivos
+
+[ ] 6.2. Navegue até a pasta public_html (pasta raiz do site)
+
+[ ] 6.3. DELETE os arquivos padrão (index.html, etc.) se existirem
+
+[ ] 6.4. Clique em "Enviar arquivos" (ícone de upload)
+
+[ ] 6.5. Faça upload de TODOS os arquivos e pastas do projeto:
+    - .htaccess
+    - index.php
+    - database.sql
+    - database_update.sql
+    - /config/
+    - /controllers/
+    - /models/
+    - /views/
+
+    DICA: Você pode compactar tudo em um .zip e fazer upload do .zip,
+    depois extrair pelo gerenciador de arquivos.
+
+
+================================================================================
+PASSO 7: CONFIGURAR PERMISSÕES DE ARQUIVOS
+================================================================================
+
+[ ] 7.1. No Gerenciador de Arquivos, selecione todas as PASTAS
+
+[ ] 7.2. Clique com botão direito > Permissões
+
+[ ] 7.3. Configure para: 755 (rwxr-xr-x)
+
+[ ] 7.4. Selecione todos os ARQUIVOS .php
+
+[ ] 7.5. Configure permissões para: 644 (rw-r--r--)
+
+RESUMO DE PERMISSÕES:
+- Pastas: 755
+- Arquivos PHP: 644
+- Arquivos de configuração: 644
+- .htaccess: 644
+
+
+================================================================================
+PASSO 8: ATIVAR SSL/HTTPS
+================================================================================
+
+[ ] 8.1. No hPanel, vá em: Segurança > SSL
+
+[ ] 8.2. Verifique se o certificado SSL está ativo
+    (Geralmente a Hostinger já ativa automaticamente)
+
+[ ] 8.3. Se não estiver ativo:
+    - Clique em "Instalar SSL"
+    - Selecione "Let's Encrypt" (grátis)
+    - Aguarde a instalação (pode levar até 24h)
+
+[ ] 8.4. Ative a opção "Forçar HTTPS" se disponível
+
+
+================================================================================
+PASSO 9: TESTAR O SITE
+================================================================================
+
+[ ] 9.1. Acesse seu site: https://seudominio.com.br
+
+[ ] 9.2. Verifique a página inicial com os serviços
+
+[ ] 9.3. Teste a calculadora de orçamento
+
+[ ] 9.4. Acesse o admin: https://seudominio.com.br/index.php?page=admin
+    - Email: admin@petservices.com
+    - Senha: admin123
+
+[ ] 9.5. IMPORTANTE: Altere a senha do admin após o primeiro acesso!
+
+[ ] 9.6. Teste os botões de WhatsApp e Instagram
+
+[ ] 9.7. Teste o botão "Como Chegar" (GPS)
+
+
+================================================================================
+PASSO 10: VERIFICAÇÕES FINAIS
+================================================================================
+
+[ ] 10.1. Verifique se o SSL está funcionando (cadeado verde no navegador)
+
+[ ] 10.2. Teste em um celular para verificar responsividade
+
+[ ] 10.3. Envie um orçamento de teste
+
+[ ] 10.4. Verifique se o orçamento aparece no painel admin
+
+[ ] 10.5. Adicione imagens reais aos serviços pelo admin
+
+[ ] 10.6. Valide o Schema.org em:
+    https://validator.schema.org/
+    (cole a URL do seu site)
+
+
+================================================================================
+PROBLEMAS COMUNS E SOLUÇÕES
+================================================================================
+
+ERRO 500 (Internal Server Error):
+- Verifique se o .htaccess está correto
+- Verifique permissões de arquivos (755/644)
+- Verifique se PHP 8.1+ está ativo no hPanel
+
+ERRO DE CONEXÃO COM BANCO:
+- Verifique as credenciais em /config/database.php
+- Confirme o nome completo do banco e usuário
+- Teste a conexão no phpMyAdmin
+
+PÁGINA EM BRANCO:
+- Ative exibição de erros temporariamente:
+  No início do index.php, adicione:
+  ini_set('display_errors', 1);
+  error_reporting(E_ALL);
+
+CSS/JS NÃO CARREGA:
+- Verifique se está usando HTTPS
+- Limpe o cache do navegador (Ctrl+Shift+R)
+
+
+================================================================================
+CONTATOS DE SUPORTE HOSTINGER
+================================================================================
+
+Chat ao vivo: https://www.hostinger.com.br/contato
+Base de conhecimento: https://www.hostinger.com.br/tutoriais
+
+
+================================================================================
+FIM DO GUIA
+================================================================================

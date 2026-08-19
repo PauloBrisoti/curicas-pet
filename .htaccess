@@ -1,0 +1,158 @@
+# Apache Configuration — Curicas Pet
+# ============================================================
+# ORDEM CRÍTICA: Regras estão na sequência exata de execução
+# ============================================================
+
+Options -Indexes
+ServerSignature Off
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # ── 1. HTTPS OBRIGATÓRIO ─────────────────────────────────────────
+    # SSL ativo no hPanel da Hostinger — safe para ativar
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # ── 2. REMOVER /index.php DA URL VISÍVEL (SEO 301) ───────────────
+    # EXCEÇÃO: NÃO remover quando a query string contiver page=admin
+    # (evita o loop: index.php?page=admin → / → home)
+    RewriteCond %{QUERY_STRING} !^page=admin
+    RewriteCond %{QUERY_STRING} !^action=
+    RewriteCond %{THE_REQUEST} ^[A-Z]+\s/index\.php[?\s/]
+    RewriteRule ^index\.php$ / [R=301,L]
+
+    # ── 3. REDIRECT 301: URLs LEGADAS (?page=X) → CLEAN URLS ———————————
+    # ATENÇÃO: Admin e sitemap NUNCA são redirecionados — passam de forma transparente
+    # Isso evita o loop: ?page=admin → /admin → 404 → home
+    RewriteCond %{QUERY_STRING} ^page=admin
+    RewriteRule ^ - [L]
+
+    RewriteCond %{REQUEST_URI} ^/admin(/|$)
+    RewriteRule ^ - [L]
+
+    # Páginas públicas: redirect 301 de query string → Clean URL
+    RewriteCond %{QUERY_STRING} ^page=orcamento(&.*)?$
+    RewriteRule ^$ /orcamento? [R=301,L]
+
+    RewriteCond %{QUERY_STRING} ^page=adocao(&.*)?$
+    RewriteRule ^$ /adocao? [R=301,L]
+
+    RewriteCond %{QUERY_STRING} ^page=blog(&.*)?$
+    RewriteRule ^$ /blog? [R=301,L]
+
+    RewriteCond %{QUERY_STRING} ^page=galeria(&.*)?$
+    RewriteRule ^$ /galeria? [R=301,L]
+
+    RewriteCond %{QUERY_STRING} ^page=privacidade(&.*)?$
+    RewriteRule ^$ /privacidade? [R=301,L]
+
+    # Página Ponte — tráfego Instagram/links bio (reescrita interna, URL não muda)
+    RewriteRule ^whatsapp$ index.php?page=whatsapp [QSA,L]
+
+    # Página Ponte — campanha QR Code em camiseta
+    RewriteRule ^camiseta$ index.php?page=camiseta [QSA,L]
+
+    # Atalho de avaliação — redirect 301 para Google Meu Negócio
+    RewriteRule ^avaliar$ index.php?page=avaliar [QSA,L]
+
+    # ── 4. SITEMAP DINÂMICO ──────────────────────────────────────────
+    # /sitemap.xml é servido pelo sitemap.php (inclui posts do blog)
+    # O Google recebe XML válido sem saber que é PHP
+    RewriteRule ^sitemap\.xml$ sitemap.php [L]
+
+    # ── 5. FRONT CONTROLLER ──────────────────────────────────────────
+    # Arquivos físicos (assets, imagens) passam direto
+    # Tudo mais é roteado para o index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
+
+# ── 5. BLOQUEIO DE ACESSO A DIRETÓRIOS SENSÍVEIS ─────────────────
+<IfModule mod_rewrite.c>
+    RewriteRule ^config/   - [F,L]
+    RewriteRule ^models/   - [F,L]
+    RewriteRule ^controllers/ - [F,L]
+    RewriteRule \.sql$     - [F,L]
+    RewriteRule \.env$     - [F,L]
+</IfModule>
+
+<FilesMatch "\.(sql|env|log|sh|bak)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "^\.">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# ── 6. HEADERS DE SEGURANÇA ──────────────────────────────────────
+<IfModule mod_headers.c>
+    # Clickjacking
+    Header always set X-Frame-Options "SAMEORIGIN"
+
+    # MIME sniffing
+    Header always set X-Content-Type-Options "nosniff"
+
+    # XSS (legacy browsers)
+    Header always set X-XSS-Protection "1; mode=block"
+
+    # Referrer
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Permissões de hardware
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+
+    # HSTS — força HTTPS por 1 ano (requer SSL ativo no servidor)
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+    # COOP — isola o contexto de navegação (segurança contra Spectre)
+    Header always set Cross-Origin-Opener-Policy "same-origin"
+
+    # CSP — permite CDNs já usados no projeto sem quebrar o site
+    Header always set Content-Security-Policy "\
+default-src 'self'; \
+script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com; \
+style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com; \
+font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; \
+img-src 'self' data: https: blob:; \
+connect-src 'self' https://www.google-analytics.com https://analytics.google.com; \
+frame-src 'self' https://www.google.com https://www.youtube.com; \
+object-src 'none'; \
+base-uri 'self'; \
+form-action 'self'"
+</IfModule>
+
+# ── 7. CACHE DE ASSETS ESTÁTICOS ─────────────────────────────────
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpeg        "access plus 1 month"
+    ExpiresByType image/png         "access plus 1 month"
+    ExpiresByType image/webp        "access plus 1 month"
+    ExpiresByType image/gif         "access plus 1 month"
+    ExpiresByType image/svg+xml     "access plus 1 month"
+    ExpiresByType text/css          "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+    ExpiresByType application/x-font-woff2 "access plus 3 months"
+</IfModule>
+
+# ── 8. COMPRESSÃO GZIP ───────────────────────────────────────────
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# Bloquear arquivos de debug em produção
+<FilesMatch "^debug.*\.php$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# ── 9. CHARSET PADRÃO ────────────────────────────────────────────
+AddDefaultCharset UTF-8

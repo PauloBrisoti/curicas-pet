@@ -1,0 +1,159 @@
+================================================================================
+                    CONTEÚDO DO SITE - PETCARE SERVICES
+                    Copywriting de Alta Conversão
+================================================================================
+
+================================================================================
+SEÇÃO 1: HERO (TOPO DA PÁGINA)
+================================================================================
+
+TÍTULO (H1):
+"Seu Pet em Família Enquanto Você Viaja"
+
+SUBTÍTULO (H2):
+"Hotel, passeios e cuidados em domicílio com profissionais apaixonados por 
+animais. Porque quem ama, cuida de verdade."
+
+BOTÃO PRINCIPAL:
+"Fazer Orçamento Grátis"
+
+BOTÃO SECUNDÁRIO:
+"Conhecer Serviços"
+
+--------------------------------------------------------------------------------
+ALTERNATIVA 1:
+--------------------------------------------------------------------------------
+TÍTULO: "Férias Tranquilas Começam Aqui"
+SUBTÍTULO: "Enquanto você descansa, seu melhor amigo recebe todo carinho que 
+merece. Hospedagem 24h com monitoramento e muito amor."
+
+--------------------------------------------------------------------------------
+ALTERNATIVA 2:
+--------------------------------------------------------------------------------
+TÍTULO: "O Melhor Colo Para Seu Pet"
+SUBTÍTULO: "Profissionais certificados, ambiente seguro e a atenção que seu 
+companheiro merece. Conheça nossos serviços."
+
+
+================================================================================
+SEÇÃO 2: SOBRE NÓS
+================================================================================
+
+VERSÃO CURTA (Para seção na Home):
+"Somos uma equipe apaixonada por animais, com mais de 5 anos dedicados ao 
+bem-estar de pets em São Paulo. Nossa missão é oferecer cuidado profissional 
+com o carinho de quem trata cada bichinho como se fosse da família. Ambiente 
+climatizado, monitoramento 24h e equipe treinada para garantir a segurança 
+e felicidade do seu companheiro."
+
+VERSÃO LONGA (Para página Sobre):
+"Nascemos do amor incondicional pelos animais e da vontade de oferecer aos 
+tutores a tranquilidade que merecem. Sabemos que deixar seu pet aos cuidados 
+de outra pessoa não é fácil — por isso, tratamos cada hóspede como se fosse 
+nosso próprio bichinho.
+
+Nossa equipe é formada por profissionais certificados em comportamento animal, 
+primeiros socorros pet e nutrição. Contamos com instalações modernas, 
+climatizadas e com monitoramento por câmeras 24 horas.
+
+Porque amor se demonstra com cuidado, atenção e profissionalismo."
+
+
+================================================================================
+SEÇÃO 3: DESCRIÇÕES DOS SERVIÇOS (Para o Banco de Dados)
+================================================================================
+
+--------------------------------------------------------------------------------
+SERVIÇO 1: HOSPEDAGEM (HOTEL PET)
+--------------------------------------------------------------------------------
+NOME: "Hospedagem Premium"
+
+DESCRIÇÃO:
+"Seu pet merece férias tão boas quanto as suas! Oferecemos acomodações 
+individuais climatizadas, alimentação premium, passeios diários e 
+monitoramento 24 horas. Receba fotos e vídeos diariamente no WhatsApp. 
+Check-in e check-out flexíveis."
+
+PREÇO SUGERIDO: R$ 120,00 / diária
+
+--------------------------------------------------------------------------------
+SERVIÇO 2: DOG WALKING (PASSEIOS)
+--------------------------------------------------------------------------------
+NOME: "Dog Walking Profissional"
+
+DESCRIÇÃO:
+"Passeios seguros e divertidos com condutores experientes! Rotas em parques 
+arborizados, grupos pequenos (máx. 3 cães) para atenção individualizada, 
+e acompanhamento via GPS em tempo real. Seu cão volta feliz, exercitado 
+e sociabilizado."
+
+PREÇO SUGERIDO: R$ 45,00 / passeio (50 min)
+
+--------------------------------------------------------------------------------
+SERVIÇO 3: PET SITTER (CUIDADOR EM DOMICÍLIO)
+--------------------------------------------------------------------------------
+NOME: "Pet Sitter em Casa"
+
+DESCRIÇÃO:
+"O conforto da sua casa com cuidado profissional! Nosso Pet Sitter vai até 
+você para alimentação, brincadeiras, administração de medicamentos e 
+companhia. Ideal para pets idosos, ansiosos ou que preferem ficar no 
+ambiente familiar."
+
+PREÇO SUGERIDO: R$ 80,00 / hora
+
+
+================================================================================
+SEÇÃO 4: DIFERENCIAIS / POR QUE NOS ESCOLHER
+================================================================================
+
+DIFERENCIAL 1: "Profissionais Certificados"
+"Equipe treinada em comportamento animal e primeiros socorros pet."
+
+DIFERENCIAL 2: "Monitoramento 24h"
+"Câmeras ao vivo e atualizações diárias no seu WhatsApp."
+
+DIFERENCIAL 3: "Ambiente Premium"
+"Espaços climatizados, higienizados e preparados para o conforto."
+
+DIFERENCIAL 4: "Atendimento Personalizado"
+"Respeitamos a rotina, alimentação e necessidades especiais de cada pet."
+
+
+================================================================================
+SEÇÃO 5: CHAMADAS PARA AÇÃO (CTAs)
+================================================================================
+
+CTA PRINCIPAL:
+"Agende uma Visita Gratuita"
+
+CTA ORÇAMENTO:
+"Calcular Meu Orçamento"
+
+CTA WHATSAPP:
+"Falar com Especialista"
+
+CTA URGÊNCIA:
+"Vagas Limitadas - Reserve Agora"
+
+
+================================================================================
+SEÇÃO 6: DEPOIMENTOS (Exemplos para usar como base)
+================================================================================
+
+DEPOIMENTO 1:
+"Viajei tranquila sabendo que a Nina estava em boas mãos. Recebia fotos todos 
+os dias e ela voltou super feliz!" — Maria S., Pinheiros
+
+DEPOIMENTO 2:
+"O Thor adora os passeios! A equipe é super carinhosa e profissional. 
+Recomendo de olhos fechados." — Carlos M., Vila Madalena
+
+DEPOIMENTO 3:
+"Meu gato é muito esquivo, mas a Pet Sitter conquistou ele em minutos. 
+Serviço impecável!" — Ana P., Moema
+
+
+================================================================================
+FIM DO DOCUMENTO
+================================================================================

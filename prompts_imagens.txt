@@ -1,0 +1,152 @@
+================================================================================
+                    PROMPTS PARA GERAÇÃO DE IMAGENS
+                    Midjourney / DALL-E 3 / Leonardo AI
+================================================================================
+
+INSTRUÇÕES:
+- Copie o prompt completo e cole na ferramenta de IA escolhida
+- Os prompts estão em inglês para melhores resultados
+- Versão recomendada: Midjourney v6 ou DALL-E 3
+- Aspect ratio sugerido: 16:9 para banners, 4:3 para cards
+
+================================================================================
+IMAGEM 1: HERO BANNER (TOPO DO SITE)
+================================================================================
+
+PROMPT:
+"A happy golden retriever running joyfully on a lush green lawn, bright natural 
+sunlight, vibrant green grass matching hex color #8FDC4F, professional pet 
+photography style, shallow depth of field, bokeh background, warm and inviting 
+atmosphere, the dog has a big smile and tongue out, dynamic action shot, 
+high-end commercial quality, Canon EOS R5, 85mm lens, golden hour lighting 
+--ar 16:9 --v 6 --style raw"
+
+ALTERNATIVA (mais emocional):
+"An adorable labrador puppy playing happily in a beautiful garden with green 
+grass, soft morning light, professional pet photography, the puppy looks 
+directly at camera with loving eyes, vibrant spring colors with emphasis on 
+fresh green tones #8FDC4F, heartwarming and trustworthy mood, stock photo 
+quality, 8K ultra detailed --ar 16:9 --v 6"
+
+--------------------------------------------------------------------------------
+NOTAS DE ESTILO:
+- Cores: Verde vibrante (#8FDC4F) + tons quentes
+- Mood: Alegria, energia, confiança
+- Formato: 1920x1080px ou 1600x900px
+--------------------------------------------------------------------------------
+
+
+================================================================================
+IMAGEM 2: HOTEL PET (HOSPEDAGEM)
+================================================================================
+
+PROMPT:
+"A cozy indoor pet hotel room with multiple comfortable dog beds, two relaxed 
+dogs resting peacefully, one golden retriever and one beagle, warm ambient 
+lighting, clean modern interior design, soft blankets and cushions, potted 
+plants in background, professional interior photography, welcoming and safe 
+atmosphere, premium pet boarding facility, natural wood accents, pastel colors, 
+commercial photography style --ar 4:3 --v 6 --style raw"
+
+ALTERNATIVA (mais luxuoso):
+"Luxury pet hotel suite interior, a content french bulldog sleeping on a 
+premium orthopedic dog bed, modern minimalist decor, soft warm lighting, 
+clean white walls with green accent plants, high-end pet boarding aesthetic, 
+cozy and sophisticated, professional real estate photography style, inviting 
+and premium feel --ar 4:3 --v 6"
+
+--------------------------------------------------------------------------------
+NOTAS DE ESTILO:
+- Cores: Tons neutros + toques de verde e madeira
+- Mood: Aconchegante, seguro, premium
+- Formato: 600x400px ou 800x600px
+--------------------------------------------------------------------------------
+
+
+================================================================================
+IMAGEM 3: DOG WALKING (PASSEIOS)
+================================================================================
+
+PROMPT:
+"A professional dog walker in casual outdoor clothing walking two happy dogs 
+on leashes in a beautiful tree-lined park, golden retriever and border collie, 
+sunny day with dappled sunlight through leaves, urban park setting with green 
+grass and mature trees, the dogs are walking calmly and happily, professional 
+lifestyle photography, trustworthy and friendly atmosphere, natural candid 
+moment, vibrant green nature, commercial quality --ar 4:3 --v 6 --style raw"
+
+ALTERNATIVA (mais dinâmica):
+"Dynamic shot of a young professional dog walker jogging with two excited dogs 
+in a green city park, australian shepherd and labrador, morning exercise 
+routine, athletic wear, beautiful park path surrounded by trees, motion blur 
+on background, dogs looking happy and energetic, editorial sports photography 
+style, healthy active lifestyle --ar 4:3 --v 6"
+
+--------------------------------------------------------------------------------
+NOTAS DE ESTILO:
+- Cores: Verde natureza + cores vibrantes
+- Mood: Ativo, profissional, ao ar livre
+- Formato: 600x400px ou 800x600px
+--------------------------------------------------------------------------------
+
+
+================================================================================
+IMAGEM 4: PET SITTER (BÔNUS)
+================================================================================
+
+PROMPT:
+"A caring pet sitter woman sitting on a living room couch with a happy cat on 
+her lap and a small dog beside her, cozy home interior, warm natural lighting 
+from window, the pets look relaxed and content, genuine connection between 
+human and animals, professional lifestyle photography, trustworthy and loving 
+atmosphere, modern home decor, editorial quality --ar 4:3 --v 6 --style raw"
+
+--------------------------------------------------------------------------------
+NOTAS DE ESTILO:
+- Cores: Tons quentes de casa + elementos naturais
+- Mood: Carinho, confiança, ambiente familiar
+- Formato: 600x400px ou 800x600px
+--------------------------------------------------------------------------------
+
+
+================================================================================
+IMAGEM 5: LOGO / ÍCONE (BÔNUS)
+================================================================================
+
+PROMPT:
+"Minimalist logo design for a pet care business, a cute dog paw print combined 
+with a heart shape, clean vector style, single color green #8FDC4F on white 
+background, modern and friendly, professional branding, simple and memorable, 
+flat design, suitable for business card and website --ar 1:1 --v 6"
+
+--------------------------------------------------------------------------------
+
+
+================================================================================
+DICAS GERAIS PARA MELHORES RESULTADOS
+================================================================================
+
+1. MIDJOURNEY:
+   - Use --v 6 para a versão mais recente
+   - Adicione --style raw para fotos mais realistas
+   - Use --ar 16:9 para banners horizontais
+
+2. DALL-E 3:
+   - Seja específico com cores e estilo
+   - Mencione "professional photography" para qualidade comercial
+   - Peça "high resolution" ou "8K" para mais detalhes
+
+3. LEONARDO AI:
+   - Use o modelo "PhotoReal" para fotos realistas
+   - Ative "Alchemy" para melhor qualidade
+   - Configure resolução para 1024x1024 ou maior
+
+4. PÓS-PROCESSAMENTO:
+   - Redimensione para o tamanho exato necessário
+   - Otimize para web (máx 200KB por imagem)
+   - Use formato WebP para melhor compressão
+
+
+================================================================================
+FIM DO DOCUMENTO
+================================================================================

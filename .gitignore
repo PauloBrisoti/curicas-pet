@@ -1,0 +1,18 @@
+# Arquivos de Sistema Operacional
+.DS_Store
+Thumbs.db
+
+# Configurações com Credenciais Sensíveis
+config/config.local.php
+.env
+.env.local
+
+# Backups e Dumps com dados reais (Mantenha schemas/templates)
+*.dump
+*.bak
+debug.php
+debug_admin.php
+
+# Logs de Erro
+*.log
+error_log
