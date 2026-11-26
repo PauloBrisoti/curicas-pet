@@ -42,7 +42,7 @@ $_seoMap = [
     ],
     'orcamento' => [
         'title'       => 'Orçamento de Serviços Pet em Osasco | Curicas Pet',
-        'description' => 'Solicite orçamento para Dog Walker, Asilo Canino, Creche, Hotel Pet e Pet Sitter em Osasco e Zona Oeste SP. Resposta em até 2h pelo WhatsApp.',
+        'description' => 'Solicite orçamento para Dog Walker, Asilo Canino, Creche, Hotel Pet e Pet Sitter em Osasco e Zona Oeste SP.',
         'path'        => '/orcamento',
     ],
     'adocao' => [
@@ -471,6 +471,8 @@ $mapsLink     = 'https://www.google.com/maps/search/?api=1&query=' . rawurlencod
             .cookie-content { flex-direction: column; text-align: center; }
         }
 
+        #servicos, .service-anchor { scroll-margin-top: 6rem; }
+
         /* ── Descrição de serviço com HTML semântico (safeHtml) ── */
         .servico-descricao ul {
             list-style: disc;
@@ -520,7 +522,7 @@ $mapsLink     = 'https://www.google.com/maps/search/?api=1&query=' . rawurlencod
     <nav class="navbar navbar-expand-lg sticky-top" role="navigation" aria-label="Menu principal">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center gap-2" href="/">
-                <img src="assets/images/logo-curicas-pet.png"
+                <img src="/assets/images/logo-curicas-pet.png"
                      alt="" aria-hidden="true"
                      width="42" height="42" style="border-radius:8px;">
                 <span style="color:var(--primary-light);">Curicas</span>&nbsp;<span style="color:#fff;">Pet</span>
@@ -539,6 +541,9 @@ $mapsLink     = 'https://www.google.com/maps/search/?api=1&query=' . rawurlencod
                         <a class="nav-link <?= $currentPage === 'home' ? 'active' : '' ?>" href="/">
                             <i class="bi bi-house me-1"></i>Início
                         </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#servicos"><i class="bi bi-grid me-1"></i>Serviços</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?= $currentPage === 'orcamento' ? 'active' : '' ?>" href="/orcamento">
@@ -635,7 +640,7 @@ $mapsLink     = 'https://www.google.com/maps/search/?api=1&query=' . rawurlencod
                 <!-- Coluna 1: Marca + Bairros atendidos (sinal geo-local) -->
                 <div class="col-lg-4 col-md-6">
                     <div class="d-flex align-items-center gap-2 mb-3">
-                        <img src="assets/images/logo-curicas-pet.png"
+                        <img src="/assets/images/logo-curicas-pet.png"
                              alt="" aria-hidden="true"
                              width="52" height="52"
                              class="bg-white rounded p-1">

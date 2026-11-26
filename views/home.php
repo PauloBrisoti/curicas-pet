@@ -22,8 +22,8 @@ $carrosselItems = $galleryModel->listarCarrossel(10);
 // $artigosCluster e $servicos vêm do HomeController
 $artigosCluster = $artigosCluster ?? [];
 
-$pageTitle       = 'Curicas Pet — Dog Walker com GPS e Hotel Pet em Osasco | Zona Oeste SP';
-$pageDescription = 'Dog Walker com GPS em tempo real e Hotel Pet em Osasco, Pinheiros, Lapa, Boaçava e região. +527 pets felizes! Solicite seu orçamento pelo WhatsApp.';
+$pageTitle       = 'Curicas Pet — Serviços para pets em Osasco e Zona Oeste SP';
+$pageDescription = 'Passeios com GPS, creche, hospedagem, cuidados para cães idosos e Pet Sitter em Osasco e Zona Oeste SP. Solicite um orçamento.';
 
 $whatsappBase = 'https://wa.me/' . $businessConfig['whatsapp_num'];
 
@@ -75,36 +75,12 @@ ob_start();
     <div class="container py-4">
         <div class="row align-items-center g-5">
             <div class="col-lg-6 animate-fade-in">
-                <!-- Badges de prova social -->
-                <div class="d-flex gap-2 flex-wrap mb-3">
-                    <span class="badge fw-normal px-3 py-2"
-                          style="background:rgba(143,220,79,.15); color:#8FDC4F; border:1px solid rgba(143,220,79,.3);">
-                        ⭐ 5.0 no Google
-                    </span>
-                    <span class="badge bg-danger fw-normal px-3 py-2">
-                        🔥 Vagas limitadas esta semana
-                    </span>
-                </div>
-
                 <h1 class="display-5 fw-bold text-white mb-3 lh-sm">
-                    Passeios com <span style="color:#8FDC4F;">GPS em Tempo Real</span>
-                    em Osasco 🐾
+                    Cuidado para seu pet em Osasco e Zona Oeste
                 </h1>
-
-                <ul class="list-unstyled mb-4" style="color:rgba(255,255,255,.75); font-size:1.05rem;">
-                    <li class="mb-2">
-                        <i class="bi bi-check-circle-fill me-2" style="color:#8FDC4F;"></i>
-                        Acompanhe cada passo pelo celular
-                    </li>
-                    <li class="mb-2">
-                        <i class="bi bi-check-circle-fill me-2" style="color:#8FDC4F;"></i>
-                        Fotos e vídeos diários no WhatsApp
-                    </li>
-                    <li class="mb-2">
-                        <i class="bi bi-check-circle-fill me-2" style="color:#8FDC4F;"></i>
-                        <strong style="color:#fff;">527 pets felizes</strong> em Osasco e Zona Oeste
-                    </li>
-                </ul>
+                <p class="lead text-white mb-4">
+                    Passeios com GPS, creche, hospedagem, cuidados para cães idosos e visitas em domicílio.
+                </p>
 
                 <div class="d-flex gap-3 flex-wrap mb-3">
                     <a href="<?= $whatsappBase . '?text=' . rawurlencode('Olá! Gostaria de solicitar um orçamento.') ?>"
@@ -117,14 +93,10 @@ ob_start();
                     </a>
                 </div>
 
-                <div class="d-flex gap-4" style="color:rgba(255,255,255,.5); font-size:.85rem;">
-                    <span><i class="bi bi-shield-check me-1" style="color:#8FDC4F;"></i>Equipe certificada</span>
-                    <span><i class="bi bi-clock me-1" style="color:#8FDC4F;"></i>Resposta em até 2h</span>
-                </div>
             </div>
 
             <div class="col-lg-6 text-center animate-fade-in delay-2">
-                <img src="assets/images/hero-dog.webp"
+                <img src="/assets/images/hero-dog.webp"
                      alt="Cachorro feliz no passeio com Dog Walker em Osasco"
                      class="img-fluid rounded-4 shadow-lg"
                      width="800" height="800"
@@ -174,7 +146,6 @@ ob_start();
                 // ── Resolução de imagem ───────────────────────────────
                 // Prioridade: imagem salva no admin → WebP local → placeholder
                 $cor      = $placeholderColors[$i % count($placeholderColors)];
-                $nomeSlug = rawurlencode($servico['nome']);
 
                 // Encontrar slug WebP pelo nome do serviço
                 $webpKey = null;
@@ -204,29 +175,10 @@ ob_start();
                 $servicoDataAttr = $webpKey
                     ?? strtolower(preg_replace('/[^a-z0-9]+/i', '-', trim($servico['nome'])));
 
-                // WhatsApp CTA
-                $waMensagem  = rawurlencode('Olá, equipe Curicas Pet! Gostaria de um orçamento com desconto especial para o serviço de ' . $servico['nome'] . '.');
-                $waUrl       = $whatsappBase . '?text=' . $waMensagem;
-                $orcamentoUrl = !$ocultarPreco ? '/orcamento' : $waUrl;
-
-                // Mapeamento de âncoras e URLs por serviço
-                $servicoUrlMap = [
-                    'dog-walker'       => '/#dog-walker',
-                    'walking'          => '/#dog-walker',
-                    'hospedagem-hotel' => '/#hospedagem-hotel',
-                    'hotel'            => '/#hospedagem-hotel',
-                    'asilo-canino'     => '/#asilo-canino',
-                    'creche-daycare'   => '/#creche-daycare',
-                    'pet-sitter'       => '/#pet-sitter',
-                ];
-                $saibaMaisUrl = $servicoUrlMap[$servicoDataAttr] ?? '/orcamento';
-                // Serviço de Adoção aponta para /adocao
-                if (stripos($servico['nome'], 'Ado') !== false) {
-                    $saibaMaisUrl = '/adocao';
-                }
+                $orcamentoUrl = '/orcamento?servico=' . rawurlencode((string) $servico['id']);
             ?>
             <div id="<?= safe($servicoDataAttr) ?>"
-                 class="row align-items-center g-4 g-lg-5 mb-5 pb-4
+                 class="service-anchor row align-items-center g-4 g-lg-5 mb-5 pb-4
                         <?= $i > 0 ? 'border-top pt-5' : '' ?>"
                  style="border-color:#f0f4ec !important;"
                  data-service="<?= safe($servicoDataAttr) ?>">
@@ -266,37 +218,25 @@ ob_start();
                         <?php endforeach; ?>
                     </ul>
 
-                    <!-- Preço ou mensagem de contato -->
-                    <?php if ($ocultarPreco): ?>
-                        <p class="text-muted fst-italic small mb-3 p-3 rounded-3"
-                           style="background:#f8f9fa; border-left:3px solid #6BBF2D;">
-                            Entre em contato para mais informações e orçamentos com descontos especiais.
-                        </p>
-                        <a href="<?= safe($waUrl) ?>" target="_blank" rel="noopener"
-                           class="btn btn-success btn-lg px-4">
-                            <i class="fab fa-whatsapp me-2"></i>Fazer Orçamento
-                        </a>
-                    <?php else: ?>
-                        <div class="d-flex align-items-center gap-3 flex-wrap">
+                    <div class="d-flex align-items-center gap-3 flex-wrap">
+                        <?php if (!$ocultarPreco): ?>
                             <div>
                                 <p class="text-muted small mb-0">A partir de</p>
                                 <p class="fw-bold mb-0" style="font-size:1.5rem; color:#4A9B2E;">
-                                    R$ <?= number_format($servico['preco_base'], 0, ',', '.') ?>
+                                    R$ <?= number_format((float) $servico['preco_base'], 2, ',', '.') ?>
                                     <small class="text-muted fw-normal" style="font-size:.9rem;"><?= $tipoCobranca ?></small>
                                 </p>
                             </div>
-                            <a href="<?= safe($saibaMaisUrl) ?>"
-                               class="btn btn-outline-primary btn-lg px-4"
-                               aria-label="Saiba mais sobre <?= safe($servico['nome']) ?>">
-                                Saiba Mais
+                        <?php endif; ?>
+                        <?php if (stripos($servico['nome'], 'Ado') !== false): ?>
+                            <a href="/adocao" class="btn btn-primary px-4">Ver pets para adoção</a>
+                        <?php else: ?>
+                            <a href="<?= safe($orcamentoUrl) ?>" class="btn btn-primary px-4"
+                               aria-label="Pedir orçamento para <?= safe($servico['nome']) ?>">
+                                Pedir orçamento
                             </a>
-                            <a href="/orcamento"
-                               class="btn btn-primary btn-lg px-4"
-                               aria-label="Contratar <?= safe($servico['nome']) ?> — Solicitar orçamento">
-                                Contratar &rarr;
-                            </a>
-                        </div>
-                    <?php endif; ?>
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
             <?php endforeach; ?>
@@ -315,7 +255,7 @@ ob_start();
             <p class="text-muted">Veja como cuidamos dos pets com amor e dedicação</p>
         </div>
 
-        <div id="carrosselGaleria" class="carousel slide" data-bs-ride="carousel">
+        <div id="carrosselGaleria" class="carousel slide">
             <div class="carousel-indicators">
                 <?php foreach ($carrosselItems as $idx => $item): ?>
                 <button type="button" data-bs-target="#carrosselGaleria"
@@ -332,7 +272,7 @@ ob_start();
                         <div class="ratio ratio-16x9" style="max-height:500px;">
                             <iframe src="<?= safe($item['imagem']) ?>"
                                     title="<?= safe($item['titulo']) ?>"
-                                    allowfullscreen></iframe>
+                                    loading="lazy" allowfullscreen></iframe>
                         </div>
                     <?php else: ?>
                         <img src="<?= safe($item['imagem']) ?>"
@@ -366,80 +306,12 @@ ob_start();
 <?php endif; ?>
 
 <!-- ═══════════════════════════════════════════
-     NÚMEROS / PROVA SOCIAL
-     ═══════════════════════════════════════════ -->
-<section class="py-5 bg-white">
-    <div class="container py-3">
-        <div class="text-center mb-5">
-            <h2 class="display-6 fw-bold">Por que 527 Tutores Confiam na Curicas Pet?</h2>
-            <p class="text-muted">Resultados que fazem a diferença em Osasco e Zona Oeste</p>
-        </div>
-
-        <div class="row g-4 mb-5">
-            <?php
-            $stats = [
-                ['icon' => '🏆', 'value' => '100%',  'label' => 'Equipe Certificada',   'desc' => 'Curso de comportamento animal e primeiros socorros pet'],
-                ['icon' => '📍', 'value' => '1.247', 'label' => 'Passeios em 2024',     'desc' => 'Todos com GPS em tempo real e foto no WhatsApp'],
-                ['icon' => '⏱️', 'value' => '<2h',   'label' => 'Tempo de Resposta',    'desc' => 'Atendimento ágil pelo WhatsApp, inclusive fins de semana'],
-            ];
-            foreach ($stats as $idx => $s):
-            ?>
-            <div class="col-md-4 animate-fade-in delay-<?= $idx + 1 ?>">
-                <div class="text-center p-4 rounded-4 h-100" style="background:#F8F9FA;">
-                    <div class="mb-3" style="font-size:2.5rem;"><?= $s['icon'] ?></div>
-                    <h3 class="fw-bold" style="color:#4A9B2E; font-size:2rem;"><?= $s['value'] ?></h3>
-                    <h4 class="fw-bold fs-6"><?= $s['label'] ?></h4>
-                    <p class="text-muted small"><?= $s['desc'] ?></p>
-                </div>
-            </div>
-            <?php endforeach; ?>
-        </div>
-
-        <!-- Depoimentos -->
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <h5 class="text-center mb-4 fw-semibold">
-                    <i class="bi bi-chat-quote me-2" style="color:#6BBF2D;"></i>O que nossos clientes dizem
-                </h5>
-                <div class="row g-3">
-                    <?php
-                    $depoimentos = [
-                        ['inicial' => 'C', 'nome' => 'Carla M.', 'color' => '#6BBF2D', 'texto' => '"Meu Thor ama os passeios! Recebo fotos todos os dias. Super recomendo o Dog Walker em Osasco!"', 'tempo' => 'Cliente há 8 meses'],
-                        ['inicial' => 'R', 'nome' => 'Roberto S.', 'color' => '#4A9B2E', 'texto' => '"Deixei minha Luna no hotel por 10 dias. Voltou feliz e cheirosa! Melhor Hotel Pet da Zona Oeste."', 'tempo' => 'Cliente há 1 ano'],
-                        ['inicial' => 'A', 'nome' => 'Ana Paula', 'color' => '#2D7A1F', 'texto' => '"Atendimento impecável! Sempre respondem rápido no WhatsApp e o Pet Sitter foi incrível!"', 'tempo' => 'Cliente há 6 meses'],
-                    ];
-                    foreach ($depoimentos as $dep):
-                    ?>
-                    <div class="col-md-4">
-                        <div class="card border-0 shadow-sm h-100 p-3">
-                            <div class="d-flex align-items-center mb-2 gap-2">
-                                <div class="rounded-circle text-white d-flex align-items-center justify-content-center fw-bold flex-shrink-0"
-                                     style="width:44px;height:44px;background:<?= $dep['color'] ?>;font-size:1.1rem;">
-                                    <?= $dep['inicial'] ?>
-                                </div>
-                                <div>
-                                    <strong><?= $dep['nome'] ?></strong>
-                                    <div style="color:#f59e0b; font-size:.85rem;">⭐⭐⭐⭐⭐</div>
-                                </div>
-                            </div>
-                            <p class="small text-muted mb-1"><?= $dep['texto'] ?></p>
-                            <small class="text-muted"><?= $dep['tempo'] ?></small>
-                        </div>
-                    </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════════════
      INSTAGRAM CTA — Fundo neutro/escuro (não gradiente pesado)
      ═══════════════════════════════════════════ -->
 <section class="py-5" style="background:#1a2a0a;">
     <div class="container py-3">
         <div class="row align-items-center g-4">
-            <div class="col-lg-7">
+            <div class="col-lg-8 mx-auto text-center">
                 <span class="badge mb-3 px-3 py-2"
                       style="background:rgba(143,220,79,.15); color:#8FDC4F;">
                     <i class="fab fa-instagram me-1"></i> @curicaspet
@@ -448,43 +320,13 @@ ob_start();
                     Acompanhe no Instagram!
                 </h2>
                 <p class="mb-4" style="color:rgba(255,255,255,.65);">
-                    Veja fotos e vídeos diários dos passeios, bastidores do hotel e dicas de cuidados com seu pet
+                    Veja fotos e vídeos dos passeios, bastidores do hotel e dicas de cuidados com seu pet
                     em Osasco e Zona Oeste SP.
                 </p>
-                <ul class="list-unstyled mb-4" style="color:rgba(255,255,255,.7);">
-                    <li class="mb-2"><i class="bi bi-camera-video me-2" style="color:#8FDC4F;"></i>Reels dos passeios com música</li>
-                    <li class="mb-2"><i class="bi bi-image me-2" style="color:#8FDC4F;"></i>Fotos dos pets no Hotel</li>
-                    <li class="mb-2"><i class="bi bi-lightbulb me-2" style="color:#8FDC4F;"></i>Dicas de adestramento</li>
-                </ul>
                 <a href="https://www.instagram.com/curicaspet" target="_blank" rel="noopener"
                    class="btn btn-light btn-lg px-5 fw-bold">
                     <i class="fab fa-instagram me-2" style="color:#e6683c;"></i>Seguir @curicaspet
                 </a>
-            </div>
-            <div class="col-lg-5 text-center d-none d-lg-block">
-                <!-- Mini mockup de celular -->
-                <div class="d-inline-block"
-                     style="background:#0a1a05; border-radius:28px; padding:10px; box-shadow:0 20px 60px rgba(0,0,0,.5); max-width:240px;">
-                    <div style="background:#fff; border-radius:20px; overflow:hidden;">
-                        <div class="d-flex align-items-center gap-2 p-2 border-bottom">
-                            <img src="assets/images/logo-curicas-pet.png" width="32" height="32"
-                                 class="rounded-circle" alt="Curicas Pet">
-                            <span class="fw-bold small">curicaspet</span>
-                            <span class="ms-auto small" style="color:#6BBF2D;">Seguir</span>
-                        </div>
-                        <img src="assets/images/hero-dog.png?v=3"
-                             alt="Curicas Pet no Instagram"
-                             style="width:100%; height:180px; object-fit:cover;" loading="lazy">
-                        <div class="p-2">
-                            <div class="d-flex gap-3 mb-1" style="font-size:1.2rem; color:#333;">
-                                <i class="bi bi-heart"></i>
-                                <i class="bi bi-chat"></i>
-                                <i class="bi bi-send"></i>
-                            </div>
-                            <small class="fw-bold">527 curtidas</small>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -495,24 +337,10 @@ ob_start();
      ═══════════════════════════════════════════ -->
 <section class="py-5" style="background:linear-gradient(135deg,#2D3E1F,#1a2a0a);">
     <div class="container text-center text-white py-3">
-        <div class="mb-3">
-            <span class="badge bg-danger px-3 py-2" style="font-size:.9rem;">
-                ⏰ OFERTA EXPIRA EM 48H
-            </span>
-        </div>
-        <h2 class="display-6 fw-bold mb-3">🎁 20% OFF na Primeira Diária!</h2>
-        <p class="mb-2" style="color:rgba(255,255,255,.85);">
-            Apenas <strong>5 vagas restantes</strong> para novos clientes esta semana.
-        </p>
-        <p class="mb-4" style="color:rgba(255,255,255,.55);">Resposta em até 2 horas pelo WhatsApp.</p>
-        <a href="<?= $whatsappBase . '?text=' . rawurlencode('Olá! Vi o desconto de 20% na primeira diária e gostaria de aproveitar!') ?>"
-           target="_blank" rel="noopener"
-           class="btn btn-success btn-lg px-5 fw-bold">
-            <i class="fab fa-whatsapp me-2"></i>Quero Meu Desconto AGORA
+        <h2 class="display-6 fw-bold mb-3">Converse com a equipe sobre o cuidado do seu pet</h2>
+        <a href="/orcamento" class="btn btn-success btn-lg px-4 fw-bold">
+            Solicitar orçamento
         </a>
-        <p class="mt-3 mb-0 small" style="color:rgba(255,255,255,.4);">
-            <i class="bi bi-shield-check me-1"></i>Sem compromisso. Respondemos em até 2h.
-        </p>
     </div>
 </section>
 
